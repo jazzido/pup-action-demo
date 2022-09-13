@@ -22,4 +22,4 @@ jobs:
           selector: '.body-content > div:nth-child(6) > p:nth-child(3) text{}'
       # Use the output from the `hello` step
       - name: Output result
-        run: echo "${{ steps.check_vin.outputs.result }}"
+        run: echo "${{ steps.check_vin.outputs.result }}" | grep -oP 'updated on ([\d/]+)' | cut -d " " -f 3
