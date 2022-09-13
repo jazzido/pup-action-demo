@@ -4,6 +4,8 @@ name: Check version of VIN database
 on:
   schedule:
     - cron: '*/5 * * * *'
+  workflow_dispatch:
+  
 
 jobs:
   check-vin:
