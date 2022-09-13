@@ -1,0 +1,23 @@
+---
+name: Check version of VIN database
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  check-vin:
+    runs-on: ubuntu-latest
+    name: Checks version of VIN db
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Check VIN
+        uses: jazzido/pup-action@v1.0.0
+        id: check_vin
+        with:
+          url: 'https://vpic.nhtsa.dot.gov/api/'
+          selector: '.body-content > div:nth-child(6) > p:nth-child(3)'
+      # Use the output from the `hello` step
+      - name: Output result
+        run: echo "${{ steps.check_vin.outputs.result }}"
